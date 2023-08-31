@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Satis>
+@{
+    ViewData["Title"] = "Satış Listesi";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-center text-succes">@ViewData["Title"]</h1>
+
+<p>
+    <a class="btn btn-outline-primary" asp-area="Admin" asp-controller="Satis" asp-action="Create">Yeni Ekle</a>
+</p>
+<table class="table table-hover table-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SatisFiyati)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SatisTarihi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Arac)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Musteri)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SatisFiyati)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SatisTarihi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Arac.KasaTipi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Musteri.Adi)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-area="Admin" asp-controller="Satis" asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
+                    <a class="btn btn-danger" asp-area="Admin" asp-controller="Satis" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
